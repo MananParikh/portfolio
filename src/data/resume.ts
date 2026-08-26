@@ -52,29 +52,27 @@ export const profile = {
   titleLine2: "& Distributed Systems Builder",
   location: "Amherst, MA → open to relocate",
   timezone: "EST",
-  availability: "Open to Summer 2026 internships & new-grad roles",
-  email: "mananrajeshb@umass.edu",
+  availability: "Open to new-grad roles starting from December 2026",
+  email: "manan.parikh.work@gmail.com",
   phone: "+1 (413) 409-9851",
   pronouns: "he/him",
   pitch:
     "I build the parts of software that have to stay up — REST services, replication protocols, the caching layer nobody notices until it's gone. I like code where correctness is measurable and the tests actually run.",
   longPitch:
-    "I'm a backend-leaning full-stack engineer with two years of production experience at Thomson Reuters and a Master's in Computer Science at UMass Amherst. I've shipped REST APIs that serve thousands of users, encrypted records from a million-row database, and built distributed systems from scratch in C++ — caching, leader-based replication, crash recovery, the works.",
+    "I'm a backend-leaning full-stack engineer with two years of production experience at Thomson Reuters and a Master's in Computer Science at UMass Amherst. I've shipped REST APIs that serve thousands of users, encrypted records from a million-row database, and built distributed systems from scratch in Java — caching, leader-based replication, crash recovery, the works.",
   // Hero "Currently" line
   currently:
-    "Pursuing MS in Computer Science at UMass Amherst (GPA 3.88). Previously Associate Software Engineer at Thomson Reuters. Open to SDE / backend / full-stack roles for 2026.",
+    "Pursuing MS in Computer Science at UMass Amherst (GPA 3.78). Previously Associate Software Engineer at Thomson Reuters. Open to SDE / backend / full-stack roles starting in December 2026/ January 2027",
   // Bio paragraphs for the About section
   bioLead:
-    "I'm Manan — an engineer who likes the parts of software most people skip past. The test suite. The cache invalidation strategy. The replication protocol that survives a node going down at 3 a.m. I've spent the last two years writing production Java at Thomson Reuters and the two before that building distributed systems in C++ for coursework that I treated like production.",
+    "I'm Manan — an engineer who likes the parts of software most people skip past. The test suite. The cache invalidation strategy. The replication protocol that survives a node going down at 3 a.m. I've spent the last two years writing production Java at Thomson Reuters and the two before that building distributed systems in Java for coursework that I treated like production.",
   bioBody1:
     "I work best when the problem has a measurable definition of done — latency curves, test coverage, a confusion matrix. I think REST APIs are a craft, not a chore. I think the difference between a junior and a senior is mostly about reading logs.",
   bioBody2:
-    "Right now I'm at UMass Amherst finishing my MS, taking classes in distributed systems, OS, and ML. I'm looking for a 2026 role where the backend is the product, or where it might as well be.",
+    "Right now I'm at UMass Amherst finishing my MS. I have taken classes in distributed systems, Machine Learning, Neural Networks and Software Engineering. I'm looking for new grad roles starting in December 2026 role where the backend is the product, or where it might as well be.",
   // About sidenotes
-  now:
-    "Finishing MS in Computer Science at UMass Amherst. Coursework in distributed systems, OS, and ML. Looking for full-time roles starting 2026.",
   studied:
-    "MS Computer Science — UMass Amherst (2026), GPA 3.88/4.0. BTech Computer Engineering — Charotar University (2023), GPA 3.79/4.0.",
+    "MS Computer Science — UMass Amherst (2026), GPA 3.78/4.0. BTech Computer Engineering — Charotar University (2023), GPA 3.79/4.0.",
   // Hero keyword marquee
   keywords: [
     "Backend systems",
@@ -136,14 +134,14 @@ export const projects: Project[] = [
     title: "Stock Bazaar",
     client: "Coursework · Distributed Systems",
     role: "Sole engineer",
-    medium: ["C++", "Sockets", "AWS", "Replication"],
+    medium: ["Java", "AWS"],
     summary:
       "A three-microservice distributed trading system with an in-memory LRU cache, leader-based replication, log-based sync, and automatic leader re-election on crash.",
     highlights: [
-      "Front-end, catalog, and replicated order services with thread-pool concurrency",
-      "LRU cache with invalidation push notifications — cut read latency meaningfully",
-      "Leader-based replication with log sync and seamless crash recovery",
-      "Automatic leader re-election; validated consistency under fault injection",
+      "Front-end, catalog, and 3-replica order service, each a Java HTTP microservice",
+      "LRU cache in the front-end with push-based invalidation from the catalog service",
+      "Leader fans every order out to two followers; replicas resync their log on restart",
+      "Automatic leader re-election on crash; deployed and load-tested on AWS EC2",
     ],
     accent: "moss",
     href: "#",
@@ -229,8 +227,8 @@ export const capabilities: Capability[] = [
   {
     title: "Distributed systems",
     detail:
-      "Built a three-service trading system in C++ with LRU caching, leader-based replication, log sync, and automatic re-election. I think about consistency the way most people think about coffee.",
-    tags: ["C++", "Sockets", "Replication", "Caching", "Fault tolerance"],
+      "Built a three-service trading system in Java — an LRU cache in the front-end, a leader that fans every order out to two followers, and automatic re-election when the leader crashes. I think about consistency the way most people think about coffee.",
+    tags: ["Java", "REST", "Replication", "Caching", "Fault tolerance"],
   },
   {
     title: "Full-stack development",
@@ -258,32 +256,18 @@ export const awards: Award[] = [
     name: "Global AI Hackathon — Winner",
     outlet: "Thomson Reuters · led a team of 6",
   },
-  {
-    year: "2024",
-    name: "Production stability milestone",
-    outlet: "Resolved 20+ legacy backend issues",
-  },
+  
   {
     year: "2023",
     name: "Peer-learning session — Blockchain & Solidity",
     outlet: "30+ junior students taught",
   },
-  {
-    year: "2026",
-    name: "MS Computer Science",
-    outlet: "UMass Amherst · GPA 3.88/4.0",
-  },
-  {
-    year: "2023",
-    name: "BTech Computer Engineering",
-    outlet: "Charotar University · GPA 3.79/4.0",
-  },
 ];
 
 export const socials: SocialLink[] = [
-  { label: "Email", handle: "mananrajeshb@umass.edu", href: "mailto:mananrajeshb@umass.edu" },
-  { label: "LinkedIn", handle: "/in/manan-r-parikh", href: "#" },
-  { label: "GitHub", handle: "/mananparikh", href: "#" },
+  { label: "Email", handle: profile.email, href: profile.email },
+  { label: "LinkedIn", handle: "/in/manan-r-parikh", href: "https://www.linkedin.com/in/manan-r-parikh/" },
+  { label: "GitHub", handle: "/MananParikh", href: "https://github.com/MananParikh" },
   { label: "Phone", handle: "+1 (413) 409-9851", href: "tel:+14134099851" },
 ];
 
@@ -327,76 +311,76 @@ export const archNodes: ArchNode[] = [
     label: "Clients",
     sublabel: "Concurrent traders",
     x: 50,
-    y: 8,
-    role: "Concurrent workload generator",
-    tech: ["Sockets", "Threads"],
+    y: 9,
+    role: "Load generator + verifier",
+    tech: ["Java", "REST"],
     detail:
-      "Simulated clients fire trade orders concurrently. The system was benchmarked at 4,000 trades/sec with fault injection — clients kept trading through leader crashes.",
-    metric: "4k trades/sec",
+      "Each client fires a configurable mix of lookups (GET /stocks) and trades (POST /orders) at probability p, storing every successful trade locally. It then re-queries each order via GET /orders/<id> and checks the server's response against its own record. Load-tested with 5 clients × 1000 requests against AWS.",
+    metric: "5 × 1000 reqs",
     kind: "client",
   },
   {
     id: "frontend",
     label: "Front-end Service",
-    sublabel: "HTTP gateway",
+    sublabel: "HTTP gateway · port 8080",
     x: 50,
-    y: 28,
-    role: "Request router + cache lookup",
-    tech: ["C++", "Sockets", "Thread pool"],
+    y: 30,
+    role: "Gateway · cache · leader election",
+    tech: ["Java", "HttpServer", "LRU"],
     detail:
-      "Single entry point for all client requests. On reads, checks the LRU cache first. On writes, forwards to the order service leader. Thread-pool concurrency keeps it non-blocking.",
-    metric: "p99 < 1ms",
+      "Single entry point for all client requests. On a lookup it checks the LRU cache first, falling back to the catalog. On a trade it forwards to the current order-service leader at /trade. It elects the leader on startup and re-elects on failure.",
+    metric: "~58ms lookup",
     kind: "frontend",
   },
   {
     id: "cache",
     label: "LRU Cache",
-    sublabel: "In-memory · invalidation push",
-    x: 14,
-    y: 50,
+    sublabel: "In-memory · per-stock lock",
+    x: 17,
+    y: 52,
     role: "Hot-path read accelerator",
-    tech: ["LinkedHashMap", "Push invalidation"],
+    tech: ["HashMap", "Doubly linked list", "RW lock"],
     detail:
-      "In-memory LRU cache on the front-end. On eviction, pushes invalidation notifications to downstream replicas so they drop stale keys. Reads stay sub-millisecond; consistency survives eviction.",
-    metric: "sub-ms reads",
+      "LRU cache inside the front-end: a HashMap for O(1) lookup plus a doubly linked list for access order, capacity 5. Invalidation is push-based — the catalog calls /updateCache when a stock is traded, and a per-stock ReentrantReadWriteLock blocks lookups for only that stock while it is dropped.",
+    metric: "capacity 5",
     kind: "cache",
   },
   {
     id: "catalog",
     label: "Catalog Service",
-    sublabel: "Stock lookup",
-    x: 50,
-    y: 50,
-    role: "Stock metadata + lookup",
-    tech: ["C++", "In-memory"],
+    sublabel: "Stock data · invalidation",
+    x: 83,
+    y: 52,
+    role: "Stock data + cache invalidation",
+    tech: ["Java", "In-memory"],
     detail:
-      "Holds stock metadata (tickers, names, current prices). Stateless and fast — the front-end queries it on every order to validate the instrument before forwarding to the order service.",
-    metric: "stateless",
+      "Holds stock data (name, price, quantity) and validates every trade the order service proposes. When it approves a trade it pushes an invalidation to the front-end — GET /updateCache?name=<stock> — so the cache drops the stale entry before the client can read it.",
+    metric: "invalidation source",
     kind: "service",
   },
   {
     id: "leader",
     label: "Order Service · Leader",
-    sublabel: "Primary · write-ahead log",
+    sublabel: "Primary · fans out to followers",
     x: 50,
-    y: 72,
-    role: "Write ordering + log replication",
-    tech: ["C++", "WAL", "Quorum"],
+    y: 73,
+    role: "Write ordering + replication",
+    tech: ["Java", "Order log", "Replication"],
     detail:
-      "Single leader receives all writes, appends to a write-ahead log, and replicates to followers. If quorum acks, the write commits. If not, the leader steps down and triggers re-election.",
-    metric: "quorum ack",
+      "Receives every trade at POST /trade (which is how a replica knows it is the leader), appends it to its order log, then calls UpdateFollowers() to POST the order to /update on both followers. The highest-ID replica answering /health is elected leader.",
+    metric: "leader = highest ID",
     kind: "leader",
   },
   {
     id: "replica1",
     label: "Order Replica 01",
     sublabel: "Follower · log sync",
-    x: 16,
-    y: 92,
-    role: "Hot standby + failover candidate",
-    tech: ["C++", "Log replay"],
+    x: 27,
+    y: 91,
+    role: "Hot standby + recovery",
+    tech: ["Java", "Log replay"],
     detail:
-      "Receives log entries from the leader via log-based sync. Acknowledges writes. On leader crash, becomes a candidate in the re-election. Promotes to leader if it wins quorum.",
+      "Follower built from the same code and Dockerfile as the leader. Receives replicated orders at POST /update. On restart it calls recoverOrders() — GET /inform?transactionNumber=<last> — to pull every order it missed from the leader and replay them into its log.",
     metric: "log sync",
     kind: "replica",
   },
@@ -404,13 +388,13 @@ export const archNodes: ArchNode[] = [
     id: "replica2",
     label: "Order Replica 02",
     sublabel: "Follower · log sync",
-    x: 84,
-    y: 92,
-    role: "Hot standby + failover candidate",
-    tech: ["C++", "Log replay"],
+    x: 73,
+    y: 91,
+    role: "Hot standby + failover",
+    tech: ["Java", "Log replay"],
     detail:
-      "Second follower for quorum. Same log-sync protocol as Replica 01. With the leader, three nodes form a quorum of 2 — the system tolerates one node crashing without data loss.",
-    metric: "fault tolerant",
+      "Identical follower. If the leader crashes, the front-end catches the failed connection (30ms timeout), re-elects the highest-ID replica still answering /health, and retries the request against the new leader — so the client only sees a slightly slower call, never an error.",
+    metric: "30ms failover",
     kind: "replica",
   },
 ];
@@ -419,11 +403,10 @@ export const archEdges: ArchEdge[] = [
   { from: "clients", to: "frontend", label: "orders", animated: true },
   { from: "frontend", to: "cache", label: "read", animated: true },
   { from: "frontend", to: "catalog", label: "lookup", animated: true },
-  { from: "frontend", to: "leader", label: "write", animated: true },
-  { from: "leader", to: "replica1", label: "log sync", animated: true },
-  { from: "leader", to: "replica2", label: "log sync", animated: true },
-  { from: "cache", to: "replica1", label: "invalidate", animated: false },
-  { from: "cache", to: "replica2", label: "invalidate", animated: false },
+  { from: "frontend", to: "leader", label: "trade", animated: true },
+  { from: "leader", to: "replica1", label: "update", animated: true },
+  { from: "leader", to: "replica2", label: "update", animated: true },
+  { from: "catalog", to: "cache", label: "invalidate", animated: false },
 ];
 
 // ─── Contribution graph data ───
@@ -489,8 +472,8 @@ export const skillProficiencies: SkillProficiency[] = [
     level: 85,
     years: 3,
     detail:
-      "Built a 3-service trading system in C++ with leader-based replication, log sync, and automatic re-election. Cache invalidation with push notifications.",
-    tags: ["C++", "Replication", "Caching", "Consensus"],
+      "Built a 3-service trading system in Java with leader-based replication, log sync, and automatic re-election. Push-based cache invalidation driven by the catalog service.",
+    tags: ["Java", "Replication", "Caching", "Fault tolerance"],
   },
   {
     skill: "Full-stack Development",
