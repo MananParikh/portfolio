@@ -52,3 +52,7 @@ prompt
 server.log
 # Skills directory
 /skills/
+
+# generated agent docs (Next.js)
+AGENTS.md
+CLAUDE.md
