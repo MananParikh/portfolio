@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "Distributed Systems",
     "Java",
     "Spring Boot",
-    "C++",
+    "Machine Learning",
     "UMass Amherst",
     "Thomson Reuters",
     "Full-stack",
