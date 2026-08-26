@@ -203,7 +203,7 @@ export function Recognition() {
         </Reveal>
 
         {/* Closing line + email */}
-        <Reveal className="mt-16 flex flex-col items-start justify-between gap-6 md:mt-24 md:flex-row md:items-end">
+        {/* <Reveal className="mt-16 flex flex-col items-start justify-between gap-6 md:mt-24 md:flex-row md:items-end">
           <div>
             <div className="label text-faded">{profile.recognitionCta.label}</div>
             <p className="mt-3 max-w-xl font-serif text-2xl leading-snug text-ink md:text-3xl text-balance">
@@ -219,7 +219,7 @@ export function Recognition() {
             {profile.recognitionCta.button}
             <Asterisk size={14} className="text-rust transition-transform duration-500 group-hover:rotate-180" />
           </a>
-        </Reveal>
+        </Reveal> */}
       </div>
     </section>
   );
