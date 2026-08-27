@@ -25,111 +25,107 @@ const colors: Record<string, string> = {
 };
 
 const code: Tok[][] = [
-  [{ t: "// In-memory LRU cache with invalidation push notifications.", c: "com" }],
-  [{ t: "// Reads stay fast; writes invalidate downstream replicas.", c: "com" }],
+  [{ t: "// Cache invalidation, pushed from the catalog service.", c: "com" }],
+  [{ t: "// A per-stock write lock blocks lookups for only that stock.", c: "com" }],
   [],
   [
-    { t: "public class ", c: "kw" },
-    { t: "LRUCache", c: "typ" },
-    { t: "<", c: "pun" },
-    { t: "K", c: "typ" },
-    { t: ",", c: "pun" },
-    { t: " V", c: "typ" },
-    { t: "> ", c: "pun" },
-    { t: "extends", c: "kw" },
+    { t: "public", c: "kw" },
     { t: " ", c: "pun" },
-    { t: "LinkedHashMap", c: "typ" },
-    { t: "<", c: "pun" },
-    { t: "K", c: "typ" },
-    { t: ",", c: "pun" },
-    { t: " V", c: "typ" },
-    { t: "> {", c: "pun" },
-  ],
-  [],
-  [
-    { t: "  ", c: "pun" },
-    { t: "private", c: "kw" },
+    { t: "void", c: "kw" },
     { t: " ", c: "pun" },
-    { t: "final", c: "kw" },
-    { t: " ", c: "pun" },
-    { t: "int", c: "kw" },
-    { t: " ", c: "pun" },
-    { t: "capacity", c: "var" },
-    { t: ";", c: "pun" },
-    { t: "                 ", c: "pun" },
-    { t: "// max entries before eviction", c: "com" },
-  ],
-  [
-    { t: "  ", c: "pun" },
-    { t: "private", c: "kw" },
-    { t: " ", c: "pun" },
-    { t: "final", c: "kw" },
-    { t: " ", c: "pun" },
-    { t: "List", c: "typ" },
-    { t: "<", c: "pun" },
-    { t: "Replica", c: "typ" },
-    { t: "> ", c: "pun" },
-    { t: "subscribers", c: "var" },
-    { t: ";", c: "pun" },
-  ],
-  [],
-  [
-    { t: "  ", c: "pun" },
-    { t: "@Override", c: "kw" },
-  ],
-  [
-    { t: "  ", c: "pun" },
-    { t: "protected", c: "kw" },
-    { t: " ", c: "pun" },
-    { t: "boolean", c: "kw" },
-    { t: " ", c: "pun" },
-    { t: "removeEldestEntry", c: "fn" },
+    { t: "removeEntry", c: "fn" },
     { t: "(", c: "pun" },
-    { t: "Entry", c: "typ" },
-    { t: "<", c: "pun" },
-    { t: "K", c: "typ" },
-    { t: ", V> eldest) {", c: "pun" },
-  ],
-  [
-    { t: "    ", c: "pun" },
-    { t: "if", c: "kw" },
-    { t: " (", c: "pun" },
-    { t: "size", c: "fn" },
-    { t: "()", c: "pun" },
-    { t: " > ", c: "pun" },
-    { t: "capacity", c: "var" },
+    { t: "String", c: "typ" },
+    { t: " key", c: "var" },
     { t: ") {", c: "pun" },
   ],
   [
-    { t: "      ", c: "pun" },
-    { t: "subscribers", c: "var" },
+    { t: "  ", c: "pun" },
+    { t: "if", c: "kw" },
+    { t: " (", c: "pun" },
+    { t: "cacheMap", c: "var" },
     { t: ".", c: "pun" },
-    { t: "forEach", c: "fn" },
-    { t: "(r -> r.", c: "pun" },
-    { t: "invalidate", c: "fn" },
-    { t: "(", c: "pun" },
-    { t: "eldest", c: "var" },
-    { t: ".", c: "pun" },
-    { t: "getKey", c: "fn" },
-    { t: "()));", c: "pun" },
+    { t: "containsKey", c: "fn" },
+    { t: "(key)) {", c: "pun" },
   ],
-  [
-    { t: "      ", c: "pun" },
-    { t: "return", c: "kw" },
-    { t: " ", c: "pun" },
-    { t: "true", c: "kw" },
-    { t: ";", c: "pun" },
-    { t: "                       ", c: "pun" },
-    { t: "// evict + notify", c: "com" },
-  ],
-  [{ t: "    }", c: "pun" }],
   [
     { t: "    ", c: "pun" },
-    { t: "return", c: "kw" },
+    { t: "cacheReadWriteLocks", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "putIfAbsent", c: "fn" },
+    { t: "(key, ", c: "pun" },
+    { t: "new", c: "kw" },
     { t: " ", c: "pun" },
-    { t: "false", c: "kw" },
-    { t: ";", c: "pun" },
+    { t: "ReentrantReadWriteLock", c: "typ" },
+    { t: "());", c: "pun" },
   ],
+  [
+    { t: "    ", c: "pun" },
+    { t: "ReentrantReadWriteLock", c: "typ" },
+    { t: " lock ", c: "var" },
+    { t: "= ", c: "pun" },
+    { t: "cacheReadWriteLocks", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "get", c: "fn" },
+    { t: "(key);", c: "pun" },
+  ],
+  [
+    { t: "    ", c: "pun" },
+    { t: "lock", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "writeLock", c: "fn" },
+    { t: "().", c: "pun" },
+    { t: "lock", c: "fn" },
+    { t: "();", c: "pun" },
+    { t: "        ", c: "pun" },
+    { t: "// block lookups for this stock", c: "com" },
+  ],
+  [
+    { t: "    ", c: "pun" },
+    { t: "try", c: "kw" },
+    { t: " {", c: "pun" },
+  ],
+  [
+    { t: "      ", c: "pun" },
+    { t: "Node", c: "typ" },
+    { t: " node ", c: "var" },
+    { t: "= ", c: "pun" },
+    { t: "cacheMap", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "get", c: "fn" },
+    { t: "(key);", c: "pun" },
+  ],
+  [
+    { t: "      ", c: "pun" },
+    { t: "remove", c: "fn" },
+    { t: "(node);", c: "pun" },
+    { t: "              ", c: "pun" },
+    { t: "// unlink from the doubly linked list", c: "com" },
+  ],
+  [
+    { t: "      ", c: "pun" },
+    { t: "cacheMap", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "remove", c: "fn" },
+    { t: "(key);", c: "pun" },
+    { t: "      ", c: "pun" },
+    { t: "// drop from the HashMap", c: "com" },
+  ],
+  [
+    { t: "    } ", c: "pun" },
+    { t: "finally", c: "kw" },
+    { t: " {", c: "pun" },
+  ],
+  [
+    { t: "      ", c: "pun" },
+    { t: "lock", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "writeLock", c: "fn" },
+    { t: "().", c: "pun" },
+    { t: "unlock", c: "fn" },
+    { t: "();", c: "pun" },
+  ],
+  [{ t: "    }", c: "pun" }],
   [{ t: "  }", c: "pun" }],
   [{ t: "}", c: "pun" }],
 ];
@@ -149,17 +145,18 @@ export function CodeShowcase() {
             <Reveal>
               <div className="label text-faded">Excerpt · Stock Bazaar</div>
               <h3 className="mt-3 font-serif text-3xl leading-tight tracking-tight text-ink md:text-4xl text-balance">
-                The cache that{" "}
-                <span className="display-italic text-rust">talks back</span>.
+                The cache the catalog{" "}
+                <span className="display-italic text-rust">invalidates</span>.
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-ink/75 text-pretty">
-                Most LRU caches just evict. Mine also notifies every downstream replica
-                that the key they&apos;re holding is now stale — so reads stay fast
-                and consistency survives the eviction.
+                When the catalog approves a trade, it pushes an invalidation to the
+                front-end for that one stock. A per-stock write lock means only lookups
+                for the traded stock wait — every other read passes straight through.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-ink/75 text-pretty">
-                It&apos;s 17 lines of Java. It ran 4,000 trades per second in the
-                eval harness, with sub-millisecond p99 reads.
+                Underneath it&apos;s a HashMap for O(1) lookup and a doubly linked list
+                for LRU order, capacity 5. Deployed on AWS EC2, lookups averaged around
+                58&nbsp;ms across 5 concurrent clients.
               </p>
 
               <div className="mt-6 border-t border-ink/15 pt-4">
@@ -167,15 +164,15 @@ export function CodeShowcase() {
                 <ul className="mt-2 space-y-2 text-sm text-ink/75">
                   <li className="flex gap-2">
                     <Asterisk size={12} className="mt-1 shrink-0 text-rust" />
-                    <span>Cache invalidation is the second-hardest problem in CS. Push-notifications make it tractable.</span>
+                    <span>Invalidation is push-based — the catalog owns correctness, so there are no TTLs and no stale-read window.</span>
                   </li>
                   <li className="flex gap-2">
                     <Asterisk size={12} className="mt-1 shrink-0 text-rust" />
-                    <span>Extending <code className="font-mono text-[12px] bg-paper-2 px-1">LinkedHashMap</code> keeps the surface tiny — one override, one field.</span>
+                    <span>Locking is per-stock, not global: a hot ticker being traded never freezes reads for the other four.</span>
                   </li>
                   <li className="flex gap-2">
                     <Asterisk size={12} className="mt-1 shrink-0 text-rust" />
-                    <span>Tested under concurrent client load + fault injection. Survived.</span>
+                    <span>A <code className="font-mono text-[12px] bg-paper-2 px-1">HashMap</code> plus a doubly linked list keeps get, put, and evict all O(1).</span>
                   </li>
                 </ul>
               </div>
@@ -195,9 +192,9 @@ export function CodeShowcase() {
                     <span className="font-mono text-[9px] text-faded/60">· 17 lines</span>
                   </div>
                   <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.16em] text-faded">
-                    <span>Java 17</span>
+                    <span>Java</span>
                     <span className="h-3 w-px bg-ink/20" />
-                    <span>Spring</span>
+                    <span>LRU</span>
                   </div>
                 </div>
 
@@ -230,9 +227,9 @@ export function CodeShowcase() {
                 {/* Footer — metrics */}
                 <div className="grid grid-cols-3 border-t border-ink/20">
                   {[
-                    { v: "<1ms", l: "p99 read" },
-                    { v: "4k/s", l: "peak throughput" },
-                    { v: "100%", l: "consistency under fault" },
+                    { v: "~58ms", l: "avg lookup · EC2" },
+                    { v: "~20%", l: "cache latency cut" },
+                    { v: "5×1k", l: "client load test" },
                   ].map((m, i) => (
                     <div
                       key={m.l}

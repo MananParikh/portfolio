@@ -218,7 +218,7 @@ export function StockBazaarArt({ className = "" }: ThumbProps) {
         opacity="0.7"
         letterSpacing="2"
       >
-        3 SERVICES · SOCKET IPC
+        3 SERVICES · HTTP / REST
       </text>
       <text
         x="32"

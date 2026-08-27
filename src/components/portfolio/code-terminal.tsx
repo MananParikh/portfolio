@@ -14,78 +14,91 @@ type Token = { t: string; c?: string };
 
 const snippet: Token[][] = [
   [
-    { t: "// leader election — runs on every order-service node", c: "com" },
+    { t: "// leader fans every committed order out to its followers", c: "com" },
   ],
   [
-    { t: "public class ", c: "kw" },
-    { t: "ReplicationLeader ", c: "typ" },
-    { t: "{" },
-  ],
-  [{ t: "  ", c: "spc" }, { t: "private", c: "kw" }, { t: " ", c: "spc" }, { t: "Log ", c: "typ" }, { t: "wal;" }],
-  [
-    { t: "  ", c: "spc" },
-    { t: "private", c: "kw" },
-    { t: " ", c: "spc" },
-    { t: "List", c: "typ" },
-    { t: "<", c: "pun" },
-    { t: "Replica", c: "typ" },
-    { t: "> ", c: "pun" },
-    { t: "followers;" },
-  ],
-  [{ t: "" }],
-  [
-    { t: "  ", c: "spc" },
     { t: "public ", c: "kw" },
+    { t: "static ", c: "kw" },
     { t: "void ", c: "kw" },
-    { t: "append", c: "fn" },
+    { t: "UpdateFollowers", c: "fn" },
     { t: "(", c: "pun" },
-    { t: "Order ", c: "typ" },
-    { t: "o)", c: "pun" },
-    { t: " ", c: "spc" },
-    { t: "throws", c: "kw" },
-    { t: " ", c: "spc" },
-    { t: "CrashException ", c: "typ" },
-    { t: "{" },
+    { t: "String ", c: "typ" },
+    { t: "body", c: "var" },
+    { t: ") {" },
   ],
-  [{ t: "    ", c: "spc" }, { t: "wal", c: "var" }, { t: ".", c: "pun" }, { t: "append", c: "fn" }, { t: "(o);", c: "pun" }, { t: "    ", c: "spc" }, { t: "// write-ahead log", c: "com" }],
   [
-    { t: "    ", c: "spc" },
+    { t: "  ", c: "spc" },
+    { t: "int", c: "kw" },
+    { t: "[] ", c: "pun" },
+    { t: "ids ", c: "var" },
+    { t: "= {0, 1, 2};", c: "pun" },
+  ],
+  [
+    { t: "  ", c: "spc" },
     { t: "for ", c: "kw" },
     { t: "(", c: "pun" },
-    { t: "Replica ", c: "typ" },
-    { t: "r : followers)", c: "pun" },
-    { t: " {" },
+    { t: "int ", c: "kw" },
+    { t: "i : ids) {", c: "pun" },
   ],
-  [
-    { t: "      ", c: "spc" },
-    { t: "r", c: "var" },
-    { t: ".", c: "pun" },
-    { t: "replicate", c: "fn" },
-    { t: "(", c: "pun" },
-    { t: "wal", c: "var" },
-    { t: ".", c: "pun" },
-    { t: "tail", c: "fn" },
-    { t: "());", c: "pun" },
-    { t: "  ", c: "spc" },
-    { t: "// log-based sync", c: "com" },
-  ],
-  [{ t: "    }" }],
   [
     { t: "    ", c: "spc" },
     { t: "if ", c: "kw" },
-    { t: "(", c: "pun" },
-    { t: "quorum", c: "var" },
-    { t: ".", c: "pun" },
-    { t: "acknowledged", c: "fn" },
-    { t: "()) ", c: "pun" },
-    { t: "return;", c: "kw" },
+    { t: "(i == myId) ", c: "pun" },
+    { t: "continue;", c: "kw" },
+    { t: "        ", c: "spc" },
+    { t: "// skip self", c: "com" },
   ],
   [
     { t: "    ", c: "spc" },
-    { t: "else ", c: "kw" },
-    { t: "stepDown", c: "fn" },
-    { t: "();       ", c: "pun" },
-    { t: "// trigger re-election", c: "com" },
+    { t: "String ", c: "typ" },
+    { t: "node ", c: "var" },
+    { t: "= ", c: "pun" },
+    { t: "getenv", c: "fn" },
+    { t: "(", c: "pun" },
+    { t: "\"orderservice\"", c: "typ" },
+    { t: " + i);", c: "pun" },
+  ],
+  [
+    { t: "    ", c: "spc" },
+    { t: "var ", c: "kw" },
+    { t: "conn ", c: "var" },
+    { t: "= (", c: "pun" },
+    { t: "HttpURLConnection", c: "typ" },
+    { t: ") ", c: "pun" },
+    { t: "open", c: "fn" },
+    { t: "(node + ", c: "pun" },
+    { t: "\"/update\"", c: "typ" },
+    { t: ");" },
+  ],
+  [
+    { t: "    ", c: "spc" },
+    { t: "conn", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "setConnectTimeout", c: "fn" },
+    { t: "(20);", c: "pun" },
+    { t: "      ", c: "spc" },
+    { t: "// fail fast if down", c: "com" },
+  ],
+  [
+    { t: "    ", c: "spc" },
+    { t: "conn", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "getOutputStream", c: "fn" },
+    { t: "().", c: "pun" },
+    { t: "write", c: "fn" },
+    { t: "(body);", c: "pun" },
+  ],
+  [
+    { t: "    ", c: "spc" },
+    { t: "int ", c: "kw" },
+    { t: "status ", c: "var" },
+    { t: "= ", c: "pun" },
+    { t: "conn", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "getResponseCode", c: "fn" },
+    { t: "();", c: "pun" },
+    { t: "  ", c: "spc" },
+    { t: "// 200 = in sync", c: "com" },
   ],
   [{ t: "  }" }],
   [{ t: "}" }],
@@ -93,11 +106,11 @@ const snippet: Token[][] = [
 
 const colorMap: Record<string, string> = {
   kw: "var(--rust)",
-  typ: "var(--moss)",
-  fn: "var(--ink)",
-  var: "var(--ink)",
-  com: "var(--faded)",
-  pun: "var(--ink)",
+  typ: "#a3b18a",   // soft moss — readable on the dark terminal
+  fn: "#c8b89e",    // clay — function names
+  var: "#f1ece1",   // paper — identifiers
+  com: "#8a8275",   // faded
+  pun: "#f1ece1",   // paper — punctuation
   spc: "inherit",
 };
 
@@ -166,7 +179,7 @@ export function CodeTerminal() {
           <span className="h-2 w-2 rounded-full bg-moss" />
         </div>
         <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-paper/50">
-          ReplicationLeader.java
+          OrderService.java
         </div>
         <div className="font-mono text-[9px] text-paper/50">
           {phase === "typing" ? "● typing" : phase === "hold" ? "● saved" : "○ reset"}
@@ -199,7 +212,7 @@ export function CodeTerminal() {
           {phase === "hold" && (
             <div className="mt-1 flex items-center gap-2 text-[10px] text-paper/50">
               <span className="pulse-dot inline-block h-1 w-1 rounded-full bg-moss" />
-              3 replicas acked · log synced · quorum reached
+              2 followers updated · order log synced
             </div>
           )}
         </div>
