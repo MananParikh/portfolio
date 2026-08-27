@@ -7,7 +7,7 @@ import { Hero } from "@/components/portfolio/hero";
 import { SelectedWork } from "@/components/portfolio/selected-work";
 import { About } from "@/components/portfolio/about";
 import { CodeShowcase } from "@/components/portfolio/code-showcase";
-import { ArchitectureDiagram3D } from "@/components/portfolio/architecture-3d";
+import { ArchitectureDiagram } from "@/components/portfolio/architecture-diagram";
 import { ContributionGraph } from "@/components/portfolio/contribution-graph";
 import { SkillProficiency } from "@/components/portfolio/skill-proficiency";
 import { Experience, Recognition } from "@/components/portfolio/sections";
@@ -37,8 +37,8 @@ export default function Home() {
           <SelectedWork />
           <About />
           <CodeShowcase />
-          <ArchitectureDiagram3D />
-          <ContributionGraph />
+          <ArchitectureDiagram />
+          {/* <ContributionGraph /> */}
           <SkillProficiency />
           <Experience />
           <Recognition />
