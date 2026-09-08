@@ -44,7 +44,6 @@ export function Contact() {
                 data-cursor="link"
                 data-cursor-label="Mail"
                 className="group mt-4 block"
-                target="_blank"
               >
                 <span className="font-serif text-[clamp(2rem,5vw,4.5rem)] leading-[1.05] tracking-tight text-ink transition-colors group-hover:text-rust break-all">
                   {profile.email}
@@ -73,6 +72,7 @@ export function Contact() {
                       data-cursor-label="Open"
                       className="group flex items-center justify-between border-b border-ink/15 py-3.5"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <span className="flex items-center gap-3 text-ink">
                         <span className="text-rust">{socialIcon[s.label] ?? <Bookmark size={16} />}</span>

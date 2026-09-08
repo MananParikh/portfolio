@@ -44,6 +44,10 @@ export type SocialLink = {
   href: string;
 };
 
+// Single source of truth for GPAs — update here, reflows everywhere.
+export const MS_GPA = "3.78";    // MS Computer Science · UMass Amherst
+export const BTECH_GPA = "3.79"; // BTech Computer Engineering · Charotar University
+
 export const profile = {
   name: "Manan Parikh",
   firstName: "Manan",
@@ -62,7 +66,7 @@ export const profile = {
     "I'm a backend-leaning full-stack engineer with two years of production experience at Thomson Reuters and a Master's in Computer Science at UMass Amherst. I've shipped REST APIs that serve thousands of users, encrypted records from a million-row database, and built distributed systems from scratch in Java — caching, leader-based replication, crash recovery, the works.",
   // Hero "Currently" line
   currently:
-    "Pursuing MS in Computer Science at UMass Amherst (GPA 3.78). Previously Associate Software Engineer at Thomson Reuters. Open to SDE / backend / full-stack roles starting in December 2026/ January 2027",
+    `Pursuing MS in Computer Science at UMass Amherst (GPA ${MS_GPA}). Previously Associate Software Engineer at Thomson Reuters. Open to SDE / backend / full-stack roles starting in December 2026/ January 2027`,
   // Bio paragraphs for the About section
   bioLead:
     "I'm Manan — an engineer who likes the parts of software most people skip past. The test suite. The cache invalidation strategy. The replication protocol that survives a node going down at 3 a.m. I've spent the last two years writing production Java at Thomson Reuters and the two before that building distributed systems in Java for coursework that I treated like production.",
@@ -72,14 +76,14 @@ export const profile = {
     "Right now I'm at UMass Amherst finishing my MS. I have taken classes in distributed systems, Machine Learning, Neural Networks and Software Engineering. I'm looking for new grad roles starting in December 2026 role where the backend is the product, or where it might as well be.",
   // About sidenotes
   studied:
-    "MS Computer Science — UMass Amherst (2026), GPA 3.78/4.0. BTech Computer Engineering — Charotar University (2023), GPA 3.79/4.0.",
+    `MS Computer Science — UMass Amherst (2026), GPA ${MS_GPA}/4.0. BTech Computer Engineering — Charotar University (2023), GPA ${BTECH_GPA}/4.0.`,
   // Hero keyword marquee
   keywords: [
     "Backend systems",
     "Distributed systems",
     "Java · Spring",
     "REST APIs",
-    "C++",
+    "Microservices",
     "React · Node",
     "AWS · Docker",
     "Replication",
@@ -133,7 +137,7 @@ export const projects: Project[] = [
     year: "2025",
     title: "Stock Bazaar",
     client: "Coursework · Distributed Systems",
-    role: "Sole engineer",
+    role: "Team of 2",
     medium: ["Java", "AWS"],
     summary:
       "A three-microservice distributed trading system with an in-memory LRU cache, leader-based replication, log-based sync, and automatic leader re-election on crash.",
@@ -192,7 +196,7 @@ export const experience: ExperienceItem[] = [
     role: "MS Computer Science",
     company: "University of Massachusetts Amherst",
     location: "Amherst, MA",
-    note: "Coursework in distributed systems, OS, ML, software engineering, and system defense. GPA 3.88/4.0.",
+    note: `Coursework in distributed systems, OS, ML, software engineering, and system defense. GPA ${MS_GPA}/4.0.`,
   },
   {
     period: "2023 — 2024",
@@ -213,7 +217,7 @@ export const experience: ExperienceItem[] = [
     role: "BTech Computer Engineering",
     company: "Charotar University",
     location: "Anand, India",
-    note: "OOP, data structures, DBMS, advanced web tech, networks, info security, blockchain. GPA 3.79/4.0.",
+    note: `OOP, data structures, DBMS, advanced web tech, networks, info security, blockchain. GPA ${BTECH_GPA}/4.0.`,
   },
 ];
 
@@ -265,7 +269,7 @@ export const awards: Award[] = [
 ];
 
 export const socials: SocialLink[] = [
-  { label: "Email", handle: profile.email, href: profile.email },
+  { label: "Email", handle: profile.email, href: `mailto:${profile.email}` },
   { label: "LinkedIn", handle: "/in/manan-r-parikh", href: "https://www.linkedin.com/in/manan-r-parikh/" },
   { label: "GitHub", handle: "/MananParikh", href: "https://github.com/MananParikh" },
   { label: "Phone", handle: "+1 (413) 409-9851", href: "tel:+14134099851" },

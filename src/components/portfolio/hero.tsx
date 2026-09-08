@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { profile } from "@/data/resume";
+import { profile, MS_GPA } from "@/data/resume";
 import { Marquee, Magnetic } from "./primitives";
 import { Asterisk, ArrowDown, ArrowUpRight } from "./icons";
 import { CodeTerminal } from "./code-terminal";
@@ -164,7 +164,7 @@ export function Hero() {
               <span className="text-ink">Thomson Reuters</span>
               <span className="text-ink/30">·</span>
               <span className="text-faded">GPA</span>
-              <span className="text-ink">3.88 / 4.0</span>
+              <span className="text-ink">{MS_GPA} / 4.0</span>
             </div>
             <div className="flex items-baseline gap-5">
               <span className="text-faded">Based in</span>

@@ -49,7 +49,7 @@ export function About() {
                 <li className="flex items-center gap-2">
                   <Mail size={13} className="text-rust" />
                   <a href={`mailto:${profile.email}`} className="link-underline">
-                    {profile.email} target="_blank"
+                    {profile.email}
                   </a>
                 </li>
                 <li className="flex items-center gap-2">
