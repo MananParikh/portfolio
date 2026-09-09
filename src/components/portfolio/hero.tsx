@@ -45,16 +45,16 @@ export function Hero() {
               <span className="hidden text-ink/30 sm:inline">/</span>
               <span className="hidden text-faded sm:inline">Distributed Systems</span>
               <span className="hidden text-ink/30 md:inline">/</span>
-              <span className="hidden text-faded md:inline">EST. 2019</span>
+              <span className="hidden text-faded md:inline">Full Stack</span>
             </div>
-            <div className="flex items-center gap-4">
-              <span className="hidden text-faded sm:inline">v3.0</span>
-              <span className="hidden text-ink/30 sm:inline">/</span>
-              <span className="inline-flex items-center gap-1.5 text-ink">
-                <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-rust" />
-                Open to 2026 roles
-              </span>
-            </div>
+            {/* <div className="flex items-center gap-4"> */}
+              {/* <span className="hidden text-faded sm:inline">v3.0</span> */}
+              {/* <span className="hidden text-ink/30 sm:inline">/</span> */}
+              {/* <span className="inline-flex items-center gap-1.5 text-ink"> */}
+                {/* <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-rust" /> */}
+                {/* Open to 2026 roles */}
+              {/* </span> */}
+            {/* </div> */}
           </div>
 
           {/* Creative masthead — solid + outline + staircase + vertical sidebar */}
@@ -83,9 +83,9 @@ export function Hero() {
               className="absolute right-0 top-0 bottom-0 hidden lg:flex items-start pt-2"
               aria-hidden
             >
-              <span className="vertical-text font-mono text-[10px] uppercase tracking-[0.4em] text-faded">
+              {/* <span className="vertical-text font-mono text-[10px] uppercase tracking-[0.4em] text-faded">
                 Portfolio · Vol. 03 · 2026
-              </span>
+              </span> */}
             </div>
 
             <h1 className="display-tight text-ink w-full pr-0 lg:pr-12">
@@ -119,7 +119,7 @@ export function Hero() {
                     /
                   </span>
                 </span>
-                <span
+                {/* <span
                   className="font-mono text-[clamp(0.7rem,1.15vw,0.88rem)] uppercase tracking-[0.2em] leading-[1.8] text-faded text-right hidden sm:block"
                 >
                   — engineer
@@ -128,8 +128,7 @@ export function Hero() {
                   <br />
                   <span className="text-ink/70">full-stack</span>
                   <br />
-                  Amherst → anywhere
-                </span>
+                </span> */}
               </span>
             </h1>
 
@@ -149,8 +148,8 @@ export function Hero() {
               <span className="text-ink/70">distributed</span>
               <span className="text-ink/30">/</span>
               <span className="text-ink/70">full-stack</span>
-              <span className="text-ink/30">/</span>
-              <span>Amherst → anywhere</span>
+              {/* <span className="text-ink/30">/</span> */}
+              {/* <span>Amherst → anywhere</span> */}
             </div>
           </div>
 
@@ -167,8 +166,8 @@ export function Hero() {
               <span className="text-ink">{MS_GPA} / 4.0</span>
             </div>
             <div className="flex items-baseline gap-5">
-              <span className="text-faded">Based in</span>
-              <span className="text-ink">{profile.location}</span>
+              {/* <span className="text-faded">Based in</span> */}
+              {/* <span className="text-ink">{profile.location}</span> */}
             </div>
           </div>
 

@@ -55,7 +55,7 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-6 md:flex">
-            {nav.slice(1, -1).map((item) => {
+            {nav.slice(1).map((item) => {
               const isActive = active === item.href.slice(1);
               return (
                 <a
@@ -66,8 +66,7 @@ export function Header() {
                   }`}
                   data-cursor="link"
                 >
-                  <span className={isActive ? "text-rust" : "text-faded"}>{item.num}</span>
-                  <span className="ml-2">{item.label}</span>
+                  <span>{item.label}</span>
                   <span
                     className={`absolute -bottom-1 left-0 h-px bg-ink transition-all duration-300 ${
                       isActive ? "w-full" : "w-0 group-hover:w-full"

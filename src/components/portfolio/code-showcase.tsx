@@ -7,7 +7,7 @@ import { Asterisk, ArrowUpRight } from "./icons";
 
 /**
  * A real code excerpt with custom syntax highlighting — no library.
- * Shows the LRU cache invalidation logic from Stock Bazaar.
+ * Shows the front-end's cache-invalidation endpoint from Stock Bazaar.
  * Designed to look like a printed code listing in a typography magazine.
  */
 
@@ -25,107 +25,155 @@ const colors: Record<string, string> = {
 };
 
 const code: Tok[][] = [
-  [{ t: "// Cache invalidation, pushed from the catalog service.", c: "com" }],
-  [{ t: "// A per-stock write lock blocks lookups for only that stock.", c: "com" }],
-  [],
+  [{ t: "// Front-end endpoint the catalog calls to invalidate a traded stock.", c: "com" }],
   [
-    { t: "public", c: "kw" },
-    { t: " ", c: "pun" },
-    { t: "void", c: "kw" },
-    { t: " ", c: "pun" },
-    { t: "removeEntry", c: "fn" },
-    { t: "(", c: "pun" },
-    { t: "String", c: "typ" },
-    { t: " key", c: "var" },
-    { t: ") {", c: "pun" },
+    { t: "static ", c: "kw" },
+    { t: "class ", c: "kw" },
+    { t: "UpdateCacheHandler ", c: "typ" },
+    { t: "implements ", c: "kw" },
+    { t: "HttpHandler", c: "typ" },
+    { t: " {", c: "pun" },
   ],
   [
     { t: "  ", c: "pun" },
-    { t: "if", c: "kw" },
-    { t: " (", c: "pun" },
-    { t: "cacheMap", c: "var" },
-    { t: ".", c: "pun" },
-    { t: "containsKey", c: "fn" },
-    { t: "(key)) {", c: "pun" },
+    { t: "@Override", c: "kw" },
+  ],
+  [
+    { t: "  ", c: "pun" },
+    { t: "public ", c: "kw" },
+    { t: "void ", c: "kw" },
+    { t: "handle", c: "fn" },
+    { t: "(", c: "pun" },
+    { t: "HttpExchange", c: "typ" },
+    { t: " exchange", c: "var" },
+    { t: ") ", c: "pun" },
+    { t: "throws ", c: "kw" },
+    { t: "IOException", c: "typ" },
+    { t: " {", c: "pun" },
   ],
   [
     { t: "    ", c: "pun" },
-    { t: "cacheReadWriteLocks", c: "var" },
+    { t: "if ", c: "kw" },
+    { t: "(", c: "pun" },
+    { t: "exchange", c: "var" },
     { t: ".", c: "pun" },
-    { t: "putIfAbsent", c: "fn" },
-    { t: "(key, ", c: "pun" },
-    { t: "new", c: "kw" },
-    { t: " ", c: "pun" },
-    { t: "ReentrantReadWriteLock", c: "typ" },
-    { t: "());", c: "pun" },
-  ],
-  [
-    { t: "    ", c: "pun" },
-    { t: "ReentrantReadWriteLock", c: "typ" },
-    { t: " lock ", c: "var" },
-    { t: "= ", c: "pun" },
-    { t: "cacheReadWriteLocks", c: "var" },
-    { t: ".", c: "pun" },
-    { t: "get", c: "fn" },
-    { t: "(key);", c: "pun" },
-  ],
-  [
-    { t: "    ", c: "pun" },
-    { t: "lock", c: "var" },
-    { t: ".", c: "pun" },
-    { t: "writeLock", c: "fn" },
+    { t: "getRequestMethod", c: "fn" },
     { t: "().", c: "pun" },
-    { t: "lock", c: "fn" },
+    { t: "equalsIgnoreCase", c: "fn" },
+    { t: "(", c: "pun" },
+    { t: "\"get\"", c: "str" },
+    { t: ")) {", c: "pun" },
+  ],
+  [
+    { t: "      ", c: "pun" },
+    { t: "String ", c: "typ" },
+    { t: "query ", c: "var" },
+    { t: "= ", c: "pun" },
+    { t: "exchange", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "getRequestURI", c: "fn" },
+    { t: "().", c: "pun" },
+    { t: "getQuery", c: "fn" },
     { t: "();", c: "pun" },
+  ],
+  [
+    { t: "      ", c: "pun" },
+    { t: "String ", c: "typ" },
+    { t: "stockName ", c: "var" },
+    { t: "= ", c: "pun" },
+    { t: "null", c: "kw" },
+    { t: ";", c: "pun" },
+  ],
+  [
+    { t: "      ", c: "pun" },
+    { t: "if ", c: "kw" },
+    { t: "(", c: "pun" },
+    { t: "query ", c: "var" },
+    { t: "!= ", c: "pun" },
+    { t: "null", c: "kw" },
+    { t: ") ", c: "pun" },
+    { t: "stockName ", c: "var" },
+    { t: "= ", c: "pun" },
+    { t: "query", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "split", c: "fn" },
+    { t: "(", c: "pun" },
+    { t: "\"=\"", c: "str" },
+    { t: ")[", c: "pun" },
+    { t: "1", c: "num" },
+    { t: "];", c: "pun" },
+    { t: "   ", c: "pun" },
+    { t: "// \"name=stockName\"", c: "com" },
+  ],
+  [],
+  [
+    { t: "      ", c: "pun" },
+    { t: "if ", c: "kw" },
+    { t: "(", c: "pun" },
+    { t: "stockName ", c: "var" },
+    { t: "!= ", c: "pun" },
+    { t: "null", c: "kw" },
+    { t: ") {", c: "pun" },
+  ],
+  [
     { t: "        ", c: "pun" },
-    { t: "// block lookups for this stock", c: "com" },
+    { t: "if ", c: "kw" },
+    { t: "(", c: "pun" },
+    { t: "isCachingEnabled", c: "var" },
+    { t: ") {", c: "pun" },
   ],
+  [
+    { t: "          ", c: "pun" },
+    { t: "lruCache", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "removeEntry", c: "fn" },
+    { t: "(", c: "pun" },
+    { t: "stockName", c: "var" },
+    { t: ");", c: "pun" },
+    { t: "   ", c: "pun" },
+    { t: "// drop the stale entry", c: "com" },
+  ],
+  [{ t: "        }", c: "pun" }],
+  [
+    { t: "        ", c: "pun" },
+    { t: "// catalog doesn't know if caching is on — always ack 200", c: "com" },
+  ],
+  [
+    { t: "        ", c: "pun" },
+    { t: "exchange", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "sendResponseHeaders", c: "fn" },
+    { t: "(", c: "pun" },
+    { t: "200", c: "num" },
+    { t: ", ", c: "pun" },
+    { t: "0", c: "num" },
+    { t: ");", c: "pun" },
+  ],
+  [
+    { t: "      } ", c: "pun" },
+    { t: "else ", c: "kw" },
+    { t: "{", c: "pun" },
+  ],
+  [
+    { t: "        ", c: "pun" },
+    { t: "exchange", c: "var" },
+    { t: ".", c: "pun" },
+    { t: "sendResponseHeaders", c: "fn" },
+    { t: "(", c: "pun" },
+    { t: "404", c: "num" },
+    { t: ", ", c: "pun" },
+    { t: "0", c: "num" },
+    { t: ");", c: "pun" },
+  ],
+  [{ t: "      }", c: "pun" }],
+  [{ t: "    }", c: "pun" }],
   [
     { t: "    ", c: "pun" },
-    { t: "try", c: "kw" },
-    { t: " {", c: "pun" },
-  ],
-  [
-    { t: "      ", c: "pun" },
-    { t: "Node", c: "typ" },
-    { t: " node ", c: "var" },
-    { t: "= ", c: "pun" },
-    { t: "cacheMap", c: "var" },
+    { t: "exchange", c: "var" },
     { t: ".", c: "pun" },
-    { t: "get", c: "fn" },
-    { t: "(key);", c: "pun" },
-  ],
-  [
-    { t: "      ", c: "pun" },
-    { t: "remove", c: "fn" },
-    { t: "(node);", c: "pun" },
-    { t: "              ", c: "pun" },
-    { t: "// unlink from the doubly linked list", c: "com" },
-  ],
-  [
-    { t: "      ", c: "pun" },
-    { t: "cacheMap", c: "var" },
-    { t: ".", c: "pun" },
-    { t: "remove", c: "fn" },
-    { t: "(key);", c: "pun" },
-    { t: "      ", c: "pun" },
-    { t: "// drop from the HashMap", c: "com" },
-  ],
-  [
-    { t: "    } ", c: "pun" },
-    { t: "finally", c: "kw" },
-    { t: " {", c: "pun" },
-  ],
-  [
-    { t: "      ", c: "pun" },
-    { t: "lock", c: "var" },
-    { t: ".", c: "pun" },
-    { t: "writeLock", c: "fn" },
-    { t: "().", c: "pun" },
-    { t: "unlock", c: "fn" },
+    { t: "close", c: "fn" },
     { t: "();", c: "pun" },
   ],
-  [{ t: "    }", c: "pun" }],
   [{ t: "  }", c: "pun" }],
   [{ t: "}", c: "pun" }],
 ];
@@ -149,14 +197,15 @@ export function CodeShowcase() {
                 <span className="display-italic text-rust">invalidates</span>.
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-ink/75 text-pretty">
-                When the catalog approves a trade, it pushes an invalidation to the
-                front-end for that one stock. A per-stock write lock means only lookups
-                for the traded stock wait — every other read passes straight through.
+                This is the front-end endpoint the catalog hits the moment a stock is
+                traded — <code className="font-mono text-[12px] bg-paper-2 px-1">GET /updateCache?name=&lt;stock&gt;</code>.
+                It pulls the stock name and drops that entry from the LRU cache, so the
+                next reader never sees a stale price.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-ink/75 text-pretty">
-                Underneath it&apos;s a HashMap for O(1) lookup and a doubly linked list
-                for LRU order, capacity 5. Deployed on AWS EC2, lookups averaged around
-                58&nbsp;ms across 5 concurrent clients.
+                The cache underneath is a HashMap plus a doubly linked list, capacity 5.
+                Deployed on AWS EC2, lookups averaged around 58&nbsp;ms across 5
+                concurrent clients.
               </p>
 
               <div className="mt-6 border-t border-ink/15 pt-4">
@@ -168,11 +217,11 @@ export function CodeShowcase() {
                   </li>
                   <li className="flex gap-2">
                     <Asterisk size={12} className="mt-1 shrink-0 text-rust" />
-                    <span>Locking is per-stock, not global: a hot ticker being traded never freezes reads for the other four.</span>
+                    <span><code className="font-mono text-[12px] bg-paper-2 px-1">removeEntry()</code> takes a per-stock write lock, so only lookups for the traded stock wait — the rest fly through.</span>
                   </li>
                   <li className="flex gap-2">
                     <Asterisk size={12} className="mt-1 shrink-0 text-rust" />
-                    <span>A <code className="font-mono text-[12px] bg-paper-2 px-1">HashMap</code> plus a doubly linked list keeps get, put, and evict all O(1).</span>
+                    <span>It returns 200 even when caching is off — the catalog never needs to know the front-end&apos;s cache config.</span>
                   </li>
                 </ul>
               </div>
@@ -187,14 +236,14 @@ export function CodeShowcase() {
                 <div className="flex items-center justify-between border-b border-ink/20 px-4 py-2.5">
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-faded">
-                      LRUCache.java
+                      FrontendService.java
                     </span>
-                    <span className="font-mono text-[9px] text-faded/60">· 17 lines</span>
+                    <span className="font-mono text-[9px] text-faded/60">· 22 lines</span>
                   </div>
                   <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.16em] text-faded">
                     <span>Java</span>
                     <span className="h-3 w-px bg-ink/20" />
-                    <span>LRU</span>
+                    <span>HttpServer</span>
                   </div>
                 </div>
 

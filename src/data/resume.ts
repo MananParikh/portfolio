@@ -148,7 +148,7 @@ export const projects: Project[] = [
       "Automatic leader re-election on crash; deployed and load-tested on AWS EC2",
     ],
     accent: "moss",
-    href: "#",
+    href: "https://github.com/MananParikh/spring25-lab3-noahw227-mananparikh/tree/main",
   },
   {
     id: "spam-classifier",
@@ -280,8 +280,6 @@ export const nav = [
   { label: "Work", href: "#work", num: "01" },
   { label: "About", href: "#about", num: "02" },
   { label: "Architecture", href: "#architecture", num: "03" },
-  { label: "Activity", href: "#activity", num: "04" },
-  { label: "Capabilities", href: "#capabilities", num: "05" },
   { label: "Experience", href: "#experience", num: "06" },
   { label: "Recognition", href: "#recognition", num: "07" },
   { label: "Contact", href: "#contact", num: "08" },

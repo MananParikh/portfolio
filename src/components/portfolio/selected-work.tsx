@@ -109,13 +109,28 @@ function ProjectCard({ project, mobile = false }: { project: Project; mobile?: b
               <span className="font-serif text-base italic text-paper">
                 {project.highlights.length} highlights
               </span>
-              <span
-                className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em]"
-                style={{ color: a.label === "var(--ink)" ? "var(--clay)" : "var(--paper)" }}
-              >
-                View case
-                <ArrowUpRight size={12} />
-              </span>
+              {project.href && project.href !== "#" ? (
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="link"
+                  data-cursor-label="Open"
+                  className="relative z-10 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] hover:underline"
+                  style={{ color: a.label === "var(--ink)" ? "var(--clay)" : "var(--paper)" }}
+                >
+                  View case
+                  <ArrowUpRight size={12} />
+                </a>
+              ) : (
+                <span
+                  className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em]"
+                  style={{ color: a.label === "var(--ink)" ? "var(--clay)" : "var(--paper)" }}
+                >
+                  View case
+                  <ArrowUpRight size={12} />
+                </span>
+              )}
             </div>
           </div>
 

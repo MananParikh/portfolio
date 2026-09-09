@@ -39,7 +39,7 @@ export default function Home() {
           <CodeShowcase />
           <ArchitectureDiagram />
           {/* <ContributionGraph /> */}
-          <SkillProficiency />
+          {/* <SkillProficiency /> */}
           <Experience />
           <Recognition />
           <Contact />

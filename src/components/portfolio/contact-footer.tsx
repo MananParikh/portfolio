@@ -45,7 +45,7 @@ export function Contact() {
                 data-cursor-label="Mail"
                 className="group mt-4 block"
               >
-                <span className="font-serif text-[clamp(2rem,5vw,4.5rem)] leading-[1.05] tracking-tight text-ink transition-colors group-hover:text-rust break-all">
+                <span className="font-serif text-[clamp(1.2rem,4vw,2.75rem)] leading-[1.05] tracking-tight text-ink transition-colors group-hover:text-rust whitespace-nowrap">
                   {profile.email}
                 </span>
                 <span className="mt-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-faded">
