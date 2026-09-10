@@ -224,11 +224,10 @@ function EndCard({ mobile = false }: { mobile?: boolean }) {
 }
 
 export function SectionHeader({
-  num,
   title,
   kicker,
 }: {
-  num: string;
+  num?: string;
   title: string;
   kicker?: string;
 }) {
@@ -236,7 +235,6 @@ export function SectionHeader({
     <Reveal className="border-t border-ink pt-5">
       <div className="flex items-baseline justify-between gap-3">
         <div className="flex items-baseline gap-3 sm:gap-4">
-          <span className="font-mono text-xs uppercase tracking-[0.16em] text-rust">{num}</span>
           <h2 className="font-serif text-3xl leading-none tracking-tight text-ink sm:text-4xl md:text-6xl">
             {title}
           </h2>
